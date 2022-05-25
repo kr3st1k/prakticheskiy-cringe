@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <loginpage.h>
 #include <QMainWindow>
 #include <QtSql/QSqlDatabase>
 
@@ -16,8 +17,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+    LoginPage *lp_;
 };
 #endif // MAINWINDOW_H
