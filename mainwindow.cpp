@@ -2,22 +2,15 @@
 #include "ui_mainwindow.h"
 #include "QMessageBox"
 #include "loginpage.h"
+#include "registrationwindow.h"
 #include <QtSql/QSqlDatabase>
+#include <QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("poliklinika.sqlite");
-    if (!db.open())
-    {
-        QMessageBox pm;
-        pm.setText("Failed to open connection.\nPlease put DB into correct directory.");
-        pm.exec();
-    }
 }
 
 MainWindow::~MainWindow()
@@ -28,8 +21,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    lp_ = new LoginPage(this);
+    lp_ = new LoginPage();
     lp_->show();
-    this->close();
+
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    rp_ = new RegistrationWindow();
+    rp_->show();
 }
 

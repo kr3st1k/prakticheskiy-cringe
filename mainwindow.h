@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <loginpage.h>
+#include <registrationwindow.h>
 #include <QMainWindow>
 #include <QtSql/QSqlDatabase>
 
@@ -20,9 +21,12 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     LoginPage *lp_;
+    RegistrationWindow *rp_;
 };
 #endif // MAINWINDOW_H
