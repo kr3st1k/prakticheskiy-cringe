@@ -71,24 +71,24 @@ void MainWindow::on_pushButton_clicked()
         }
         else
         {
-            QSqlQuery fu_;
+            QSqlQuery query_;
 
-            fu_.prepare("SELECT password, role FROM polik_users WHERE login = :login");
+            query_.prepare("SELECT password, role FROM polik_users WHERE login = :login");
 
-            fu_.bindValue(":login", login);
+            query_.bindValue(":login", login);
 
-            if (!fu_.exec()){
+            if (!query_.exec()){
                 QMessageBox pm;
-                pm.setText(fu_.lastError().text());
+                pm.setText(query_.lastError().text());
                 pm.exec();
                 ui->label->setText("Что-то произошло не так...");
                 return;
             }
 
-            if(fu_.next())
+            if(query_.next())
             {
 
-                QString passdb_ = fu_.value(0).toString();
+                QString passdb_ = query_.value(0).toString();
 
                 if (passdb_.isEmpty())
                 {
@@ -98,10 +98,11 @@ void MainWindow::on_pushButton_clicked()
 
                 if(passdb_ == pass)
                 {
-                    ui->label->setText("Чел харош!");
-                    QString role = fu_.value(1).toString();
+                    QString role = query_.value(1).toString();
                     if (role == "Пациент")
                         ui->label->setText("Not yet implemented");
+                    if (role == "")
+                        ui->label->setText("noo");
                 }
                 else
                 {
