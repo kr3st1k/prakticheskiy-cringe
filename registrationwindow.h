@@ -13,7 +13,7 @@ class RegistrationWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit RegistrationWindow(QWidget *parent = nullptr);
+    explicit RegistrationWindow(QSqlDatabase *db, QWidget *parent = nullptr);
     ~RegistrationWindow();
 
 private slots:
@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::RegistrationWindow *ui;
-    QSqlDatabase db;
+    QSqlDatabase *db_;
 };
 
 #endif // REGISTRATIONWINDOW_H

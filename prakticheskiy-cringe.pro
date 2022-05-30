@@ -10,21 +10,21 @@ CONFIG += c++11
 
 SOURCES += \
     databasetweaks.cpp \
-    loginpage.cpp \
     main.cpp \
     mainwindow.cpp \
-    registrationwindow.cpp
+    registrationwindow.cpp \
+    tableviewerpage.cpp
 
 HEADERS += \
     databasetweaks.h \
-    loginpage.h \
     mainwindow.h \
-    registrationwindow.h
+    registrationwindow.h \
+    tableviewerpage.h
 
 FORMS += \
-    loginpage.ui \
     mainwindow.ui \
-    registrationwindow.ui
+    registrationwindow.ui \
+    tableviewerpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

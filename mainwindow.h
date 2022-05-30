@@ -26,7 +26,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
-    LoginPage *lp_;
     RegistrationWindow *rp_;
 };
 #endif // MAINWINDOW_H

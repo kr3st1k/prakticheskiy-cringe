@@ -6,20 +6,12 @@
 #include <QMessageBox>
 #include "QSqlError"
 
-RegistrationWindow::RegistrationWindow(QWidget *parent) :
+RegistrationWindow::RegistrationWindow(QSqlDatabase *db, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::RegistrationWindow)
+    ui(new Ui::RegistrationWindow),
+    db_(db)
 {
     ui->setupUi(this);
-
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("c:/Users/kr3st1k/Documents/prakticheskiy-cringe/poliklinika.sqlite");
-    if (!db.open())
-    {
-        QMessageBox pm;
-        pm.setText("Failed to open connection.\nPlease put DB into correct directory.");
-        pm.exec();
-    }
 }
 
 RegistrationWindow::~RegistrationWindow()
@@ -34,6 +26,7 @@ void RegistrationWindow::on_pushButton_clicked()
     QString p_fio = ui->lineEdit_3->text();
     QString p_address = ui->lineEdit_5->text();
     QString p_gender = ui->comboBox->currentText();
+
     if(p_gender.isEmpty())
     {
         ui->label->setText("Укажите пол");
@@ -42,9 +35,9 @@ void RegistrationWindow::on_pushButton_clicked()
 
     QSqlQuery findPerson_;
 
-    findPerson_.prepare("SELECT * FROM users");
+    findPerson_.prepare("SELECT * FROM users WHERE login = :lgn");
 
-    qInfo() << findPerson_.executedQuery();
+    findPerson_.bindValue(":lgn", login);
 
     if(!findPerson_.exec())
     {
@@ -55,23 +48,28 @@ void RegistrationWindow::on_pushButton_clicked()
         return;
     }
 
-    if(findPerson_.size() != 0)
+    if(findPerson_.size() > 0)
     {
         ui->label->setText("Пользователь уже существует");
         return;
     }
 
-    QSqlQuery findFio_("SELECT * FROM patients WHERE p_fio = :fio");
+    QSqlQuery findFio_("SELECT * FROM patients WHERE p_fio = '" + p_fio + "'");
 
-    findFio_.bindValue(":fio", p_fio);
-
-    if (!findFio_.exec() || findFio_.size() != 0)
+    if (!findFio_.exec())
     {
         ui->label->setText("Something went wrong..");
         return;
     }
 
-    QSqlQuery query_("INSERT INTO patients (p_fio, p_birthday, p_address, p_gender) VALUES (:fio, :bd, :address, :gender)");
+    if(findFio_.size() > 0)
+    {
+        ui->label->setText("Пользователь уже существует");
+        return;
+    }
+
+    QSqlQuery query_;
+    query_.prepare("INSERT INTO patients (p_fio, p_birthday, p_address, p_gender) VALUES (:fio, :bd, :address, :gender)");
 
         query_.bindValue(":fio", p_fio);
         query_.bindValue(":bd", ui->dateEdit->date().toString(Qt::ISODate));
@@ -84,7 +82,8 @@ void RegistrationWindow::on_pushButton_clicked()
         return;
     }
 
-    QSqlQuery query2_("INSERT INTO users (login, password, role, pa_id) VALUES (:login, :pass, :role, :pa_id");
+    QSqlQuery query2_;
+    query2_.prepare("INSERT INTO users (login, password, role, pa_id) VALUES (:login, :pass, :role, :pa_id)");
 
     query2_.bindValue(":login", login);
     query2_.bindValue(":pass", pass);
@@ -96,5 +95,10 @@ void RegistrationWindow::on_pushButton_clicked()
         ui->label->setText("Something went wrong...");
         return;
     }
+
+    QMessageBox pm;
+    pm.setText("Аккаунт успешно создан!");
+    pm.exec();
+    this->close();
 }
 
