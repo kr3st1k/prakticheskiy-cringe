@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/Users/Kr3st1k/Documents/prakticheskiy-cringe/sqlite (1).db");
+    db.setDatabaseName("C:/Users/Kr3st1k/Documents/prakticheskiy-cringe/poliklinika.sqlite");
     if (!db.open())
     {
         QMessageBox pm;

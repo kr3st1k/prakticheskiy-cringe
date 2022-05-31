@@ -22,16 +22,6 @@
      <height>21</height>
     </rect>
    </property>
-   <item>
-    <property name="text">
-     <string>test</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>test2</string>
-    </property>
-   </item>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
