@@ -1,7 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <loginpage.h>
+#include "tableviewerpage.h"
+
 #include <registrationwindow.h>
 #include <QMainWindow>
 #include <QtSql/QSqlDatabase>
@@ -26,6 +27,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+    TableViewerPage *tvp_;
     RegistrationWindow *rp_;
 };
 #endif // MAINWINDOW_H

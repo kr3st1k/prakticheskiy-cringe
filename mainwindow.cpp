@@ -100,7 +100,10 @@ void MainWindow::on_pushButton_clicked()
                 {
                     QString role = query_.value(1).toString();
                     if (role == "Пациент")
-                        ui->label->setText("Not yet implemented");
+                    {
+                        tvp_ = new TableViewerPage(&db);
+                        tvp_->show();
+                    }
                     if (role == "")
                         ui->label->setText("noo");
                 }

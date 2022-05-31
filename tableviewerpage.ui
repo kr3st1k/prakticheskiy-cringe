@@ -6,38 +6,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>782</width>
-    <height>516</height>
+    <width>1148</width>
+    <height>675</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>521</width>
-     <height>411</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>540</x>
+     <x>910</x>
      <y>20</y>
      <width>221</width>
      <height>21</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>test</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>test2</string>
+    </property>
+   </item>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>370</y>
+     <x>900</x>
+     <y>520</y>
      <width>231</width>
      <height>141</height>
     </rect>
@@ -68,14 +68,14 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Просмотр</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>100</y>
+      <y>60</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -88,7 +88,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>100</y>
+      <y>60</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -97,6 +97,42 @@
      <string>Вывод</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>100</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Выход</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>970</x>
+     <y>0</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Выберите таблицу</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>891</width>
+     <height>641</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>
