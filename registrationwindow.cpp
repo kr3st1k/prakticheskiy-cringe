@@ -35,7 +35,7 @@ void RegistrationWindow::on_pushButton_clicked()
 
     QSqlQuery findPerson_;
 
-    findPerson_.prepare("SELECT * FROM users WHERE login = :lgn");
+    findPerson_.prepare("SELECT * FROM polik_users WHERE login = :lgn");
 
     findPerson_.bindValue(":lgn", login);
 
@@ -83,12 +83,11 @@ void RegistrationWindow::on_pushButton_clicked()
     }
 
     QSqlQuery query2_;
-    query2_.prepare("INSERT INTO users (login, password, role, pa_id) VALUES (:login, :pass, :role, :pa_id)");
+    query2_.prepare("INSERT INTO polik_users (login, password, role) VALUES (:login, :pass, :role)");
 
     query2_.bindValue(":login", login);
     query2_.bindValue(":pass", pass);
     query2_.bindValue(":role", "Пациент");
-    query2_.bindValue(":pa_id", 2);
 
     if(!query2_.exec())
     {

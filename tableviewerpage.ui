@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>910</x>
-     <y>20</y>
+     <y>30</y>
      <width>221</width>
      <height>21</height>
     </rect>
@@ -26,10 +26,10 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>900</x>
-     <y>520</y>
+     <x>910</x>
+     <y>330</y>
      <width>231</width>
-     <height>141</height>
+     <height>341</height>
     </rect>
    </property>
    <property name="title">
@@ -39,59 +39,46 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
-      <width>80</width>
-      <height>21</height>
+      <y>50</y>
+      <width>191</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Добавление</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>20</y>
-      <width>80</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Просмотр</string>
+     <string>Добавить</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
-      <width>80</width>
-      <height>21</height>
+      <y>90</y>
+      <width>191</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Удаление</string>
+     <string>Удалить</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>60</y>
-      <width>80</width>
-      <height>21</height>
+      <x>20</x>
+      <y>210</y>
+      <width>191</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Вывод</string>
+     <string>Вывести в файл</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>19</x>
-      <y>100</y>
+      <x>20</x>
+      <y>290</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -100,14 +87,72 @@
      <string>Выход</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Загрузка из файла</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Сортировка</string>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Сохранить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>251</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Распечатать</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>970</x>
-     <y>0</y>
-     <width>101</width>
-     <height>16</height>
+     <x>960</x>
+     <y>10</y>
+     <width>131</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
