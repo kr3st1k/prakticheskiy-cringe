@@ -114,16 +114,6 @@ void TableViewerPage::on_removeButton_clicked()
 
 void TableViewerPage::on_saveButton_clicked()
 {
-
-    if (ui->comboBox->currentText() == "Пациенты")
-    {
-        for (int i = 0; i < modal_->rowCount(); i++)
-        {
-            auto cj = ui->tableView->model()->index(i, 0);
-
-        }
-    }
-
     modal_->submitAll();
     ui->saveButton->setEnabled(false);
 }
