@@ -7,7 +7,10 @@
 #include "QDialog"
 #include "QPrinter"
 #include "QPrintDialog"
+#include "QFileDialog"
+#include "QSqlRecord"
 
+#include <QFile>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QSqlTableModel>
@@ -69,23 +72,25 @@ void TableViewerPage::on_comboBox_currentIndexChanged(int index)
          &QSqlTableModel::dataChanged, this,
          [this]
         {
-            ui->pushButton_7->setEnabled(true);
+            ui->saveButton->setEnabled(true);
         });
+
+        ui->tableView->resizeColumnsToContents();
 
     }
 }
 
-void TableViewerPage::on_pushButton_5_clicked()
+void TableViewerPage::on_exitButton_clicked()
 {
     QCoreApplication::quit();
 }
 
 
-void TableViewerPage::on_pushButton_clicked()
+void TableViewerPage::on_addButton_clicked()
 {
 
     modal_->insertRow(modal_->rowCount(QModelIndex()));
-    ui->pushButton_7->setEnabled(true);
+    ui->saveButton->setEnabled(true);
 }
 
 
@@ -95,7 +100,7 @@ void TableViewerPage::on_checkBox_clicked(bool checked)
 }
 
 
-void TableViewerPage::on_pushButton_3_clicked()
+void TableViewerPage::on_removeButton_clicked()
 {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "А вы точно уврены?", "Вы точно хотите удалить строку?",
@@ -103,14 +108,24 @@ void TableViewerPage::on_pushButton_3_clicked()
     if (reply == QMessageBox::Yes)
     {
         modal_->removeRows(ui->tableView->currentIndex().row(), 1);
-        ui->pushButton_7->setEnabled(true);
+        ui->saveButton->setEnabled(true);
     }
 }
 
-void TableViewerPage::on_pushButton_7_clicked()
+void TableViewerPage::on_saveButton_clicked()
 {
+
+    if (ui->comboBox->currentText() == "Пациенты")
+    {
+        for (int i = 0; i < modal_->rowCount(); i++)
+        {
+            auto cj = ui->tableView->model()->index(i, 0);
+
+        }
+    }
+
     modal_->submitAll();
-    ui->pushButton_7->setEnabled(false);
+    ui->saveButton->setEnabled(false);
 }
 
 QString TableViewerPage::getColomnNames()
@@ -123,7 +138,7 @@ QString TableViewerPage::getColomnNames()
     return headers;
 }
 
-void TableViewerPage::on_pushButton_2_clicked()
+void TableViewerPage::on_printButton_clicked()
 {
     // Вывод таблиц на печать
     QPrinter *pr = new QPrinter();
@@ -148,6 +163,89 @@ void TableViewerPage::on_pushButton_2_clicked()
         doc.setHtml(html);
         doc.print(pr);
         delete pr;
+    }
+}
+
+
+void TableViewerPage::on_outputToFile_clicked()
+{
+    QString file_text;
+    QString table_name = getTableName(ui->comboBox->currentText());
+    QSqlQuery query("SELECT * FROM " + table_name);
+
+    file_text = table_name + "\n";
+
+    while (query.next()) {
+        for (int i = 0; i < modal_->rowCount() + 1; i++) {
+            file_text += query.value(i).toString() + ";";
+        }
+        file_text += "\n";
+    }
+
+    QString fileName = QFileDialog::getSaveFileName(this,
+            tr("Save table info"), "",
+            tr("Table Info (*.txt);;All Files (*)"));
+    if (fileName.isEmpty())
+        return;
+    else
+    {
+        const QString qPath(fileName);
+        QFile qFile(qPath);
+        if (qFile.open(QIODevice::WriteOnly)) {
+            QTextStream out(&qFile);
+            out << file_text;
+            qFile.close();
+        }
+        else
+        {
+            QMessageBox::warning(this, "Нет доступа к файлу", "Файл невозможно записать");
+        }
+    }
+
+}
+
+
+void TableViewerPage::on_loadFromFile_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+            tr("Open table info"), "",
+            tr("Table info (*.txt);;All Files (*)"));
+
+    if (fileName.isEmpty())
+        return;
+    else
+    {
+
+        QFile file(fileName);
+
+        if (file.open(QIODevice::ReadOnly)) {
+            QTextStream in(&file);
+            QString table_name = in.readLine();
+            if (table_name != getTableName(ui->comboBox->currentText()))
+            {
+                QMessageBox::warning(this, "Неправильная таблица", "Эти данные подходят только для таблицы " + getTableName(ui->comboBox->currentText()));
+            }
+
+            while (!in.atEnd())
+            {
+              QString line = in.readLine();
+              QStringList list = line.split(";");
+              QSqlRecord newRecord = modal_->record();
+
+              for (int i = 0; i < list.size() - 1; i++)
+              {
+                  newRecord.setValue(i, list[i]);
+              }
+
+              modal_->insertRecord(modal_->rowCount(), newRecord);
+
+            }
+            file.close();
+        }
+        else
+        {
+            QMessageBox::warning(this, "Нет доступа к файлу", "Файл невозможно прочитать");
+        }
     }
 }
 

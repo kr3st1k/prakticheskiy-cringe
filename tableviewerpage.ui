@@ -35,7 +35,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="addButton">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -48,7 +48,7 @@
      <string>Добавить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="removeButton">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -61,7 +61,7 @@
      <string>Удалить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="outputToFile">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -74,7 +74,7 @@
      <string>Вывести в файл</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="exitButton">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -87,7 +87,7 @@
      <string>Выход</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="loadFromFile">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -116,7 +116,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="saveButton">
     <property name="enabled">
      <bool>false</bool>
     </property>
@@ -132,11 +132,11 @@
      <string>Сохранить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="printButton">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>251</y>
+      <y>250</y>
       <width>191</width>
       <height>31</height>
      </rect>
@@ -145,6 +145,14 @@
      <string>Распечатать</string>
     </property>
    </widget>
+   <zorder>removeButton</zorder>
+   <zorder>addButton</zorder>
+   <zorder>outputToFile</zorder>
+   <zorder>exitButton</zorder>
+   <zorder>loadFromFile</zorder>
+   <zorder>checkBox</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>printButton</zorder>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">

@@ -21,19 +21,23 @@ public:
 private slots:
     void on_comboBox_currentIndexChanged(int index);
 
-    void on_pushButton_5_clicked();
+    void on_exitButton_clicked();
 
-    void on_pushButton_clicked();
+    void on_addButton_clicked();
 
     void on_checkBox_clicked(bool checked);
 
-    void on_pushButton_3_clicked();
+    void on_removeButton_clicked();
 
-    void on_pushButton_7_clicked();
+    void on_saveButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_printButton_clicked();
 
     QString getColomnNames();
+
+    void on_outputToFile_clicked();
+
+    void on_loadFromFile_clicked();
 
 private:
     Ui::TableViewerPage *ui;

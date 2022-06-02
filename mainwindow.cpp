@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    //Применение стиля в программе
     QApplication::setStyle(QStyleFactory::create("Fusion"));
-
     QPalette p = qApp->palette();
     p.setColor(QPalette::Text, QColor(255,255,255));
     p.setColor(QPalette::Window, QColor(53,53,53));
@@ -73,14 +73,12 @@ void MainWindow::on_pushButton_clicked()
         {
             QSqlQuery query_;
 
-            query_.prepare("SELECT password, role FROM polik_users WHERE login = :login");
+            query_.prepare("SELECT password FROM polik_users WHERE login = :login");
 
             query_.bindValue(":login", login);
 
             if (!query_.exec()){
-                QMessageBox pm;
-                pm.setText(query_.lastError().text());
-                pm.exec();
+                QMessageBox::information(this, "DB Error", query_.lastError().text());
                 ui->label->setText("Что-то произошло не так...");
                 return;
             }
@@ -98,14 +96,8 @@ void MainWindow::on_pushButton_clicked()
 
                 if(passdb_ == pass)
                 {
-                    QString role = query_.value(1).toString();
-                    if (role == "Пациент")
-                    {
-                        tvp_ = new TableViewerPage(&db);
-                        tvp_->show();
-                    }
-                    if (role == "")
-                        ui->label->setText("noo");
+                    tvp_ = new TableViewerPage(&db);
+                    tvp_->show();
                 }
                 else
                 {
